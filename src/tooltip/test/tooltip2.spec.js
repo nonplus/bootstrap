@@ -101,6 +101,22 @@ describe('tooltip directive', function () {
 
     });
 
+    describe('class', function () {
+
+      it('can specify a custom class', function () {
+        var fragment = compileTooltip('<span tooltip="tooltip text" tooltip-class="custom">Trigger here</span>');
+        fragment.find('span').trigger( 'mouseenter' );
+
+        var ttipElement = fragment.find('div.tooltip');
+        expect(fragment).toHaveOpenTooltips();
+        expect(ttipElement).toHaveClass('custom');
+
+        closeTooltip(fragment.find('span'));
+        expect(fragment).not.toHaveOpenTooltips();
+      });
+
+    });
+
   });
 
   it('should show even after close trigger is called multiple times - issue #1847', function () {

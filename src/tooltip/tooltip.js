@@ -100,6 +100,7 @@ angular.module( 'ui.bootstrap.tooltip', [ 'ui.bootstrap.position', 'ui.bootstrap
           'title="'+startSym+'title'+endSym+'" '+
           'content="'+startSym+'content'+endSym+'" '+
           'placement="'+startSym+'placement'+endSym+'" '+
+          'class="'+startSym+'class'+endSym+'" '+
           'animation="animation" '+
           'is-open="isOpen"'+
           '>'+
@@ -270,6 +271,10 @@ angular.module( 'ui.bootstrap.tooltip', [ 'ui.bootstrap.position', 'ui.bootstrap
               ttScope.title = val;
             });
 
+            attrs.$observe( prefix+'Class', function ( val ) {
+              ttScope.class = val;
+            });
+
             function prepPlacement() {
               var val = attrs[ prefix + 'Placement' ];
               ttScope.placement = angular.isDefined( val ) ? val : options.placement;
@@ -337,7 +342,7 @@ angular.module( 'ui.bootstrap.tooltip', [ 'ui.bootstrap.position', 'ui.bootstrap
   return {
     restrict: 'EA',
     replace: true,
-    scope: { content: '@', placement: '@', animation: '&', isOpen: '&' },
+    scope: { content: '@', placement: '@', class: '@', animation: '&', isOpen: '&' },
     templateUrl: 'template/tooltip/tooltip-popup.html'
   };
 })
@@ -350,7 +355,7 @@ angular.module( 'ui.bootstrap.tooltip', [ 'ui.bootstrap.position', 'ui.bootstrap
   return {
     restrict: 'EA',
     replace: true,
-    scope: { content: '@', placement: '@', animation: '&', isOpen: '&' },
+    scope: { content: '@', placement: '@', class: '@', animation: '&', isOpen: '&' },
     templateUrl: 'template/tooltip/tooltip-html-unsafe-popup.html'
   };
 })
